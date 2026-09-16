@@ -9,8 +9,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Albums",
+    "title": "Taylor Swift Album Covers",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Select an album from the dropdown below to view its cover:\n\n  Select Album:\n  \n    Taylor Swift (2006)\n    Fearless (2008)\n    Speak Now (2010)\n    Red (2012)\n    1989 (2014)\n    reputation (2017)\n    Lover (2019)\n    folklore (2020)\n    evermore (2020)\n    Midnights (2022)\n    The Tortured Poets Department (2024)"
   }
 ]
