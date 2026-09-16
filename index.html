@@ -139,31 +139,76 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Select an album from the dropdown below to view its cover:</p>
-<div class="mb-3">
+<p>Select an album to compare it with the most similar and most different covers based on color distance:</p>
+<div class="mb-4">
   <label for="album-select" class="form-label fw-bold">Select Album:</label>
-  <select id="album-select" class="form-select" style="max-width: 350px;">
-    <option value="data/taylor_swift.jpg">Taylor Swift (2006)</option>
-    <option value="data/fearless.jpg">Fearless (2008)</option>
-    <option value="data/speak_now.jpg">Speak Now (2010)</option>
-    <option value="data/red.jpg">Red (2012)</option>
-    <option value="data/1989.jpg">1989 (2014)</option>
-    <option value="data/reputation.jpg">reputation (2017)</option>
-    <option value="data/lover.jpg">Lover (2019)</option>
-    <option value="data/folklore.jpg">folklore (2020)</option>
-    <option value="data/evermore.jpg">evermore (2020)</option>
-    <option value="data/midnights.jpg">Midnights (2022)</option>
-    <option value="data/the_tortured_poets_department.jpg">The Tortured Poets Department (2024)</option>
+  <select id="album-select" class="form-select" style="max-width: 360px;">
+    <option value="taylor_swift">Taylor Swift (2006)</option>
+    <option value="fearless">Fearless (2008)</option>
+    <option value="speak_now">Speak Now (2010)</option>
+    <option value="red">Red (2012)</option>
+    <option value="1989">1989 (2014)</option>
+    <option value="reputation">reputation (2017)</option>
+    <option value="lover">Lover (2019)</option>
+    <option value="folklore">folklore (2020)</option>
+    <option value="evermore">evermore (2020)</option>
+    <option value="midnights">Midnights (2022)</option>
+    <option value="the_tortured_poets_department">The Tortured Poets Department (2024)</option>
   </select>
 </div>
 
-<div class="mt-3">
-  <img id="album-cover" src="data/taylor_swift.jpg" alt="Album Cover" style="max-width: 400px; width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<div class="row g-3">
+  <div class="col-md-4 text-center">
+    <div class="card h-100 p-3 shadow-sm">
+      <h6 class="text-uppercase text-muted fw-bold anchored">Selected</h6>
+      <p id="selected-title" class="fw-semibold mb-2">Taylor Swift (2006)</p>
+      <img id="selected-img" src="data/taylor_swift.jpg" class="img-fluid rounded" alt="Selected Album">
+    </div>
+  </div>
+  <div class="col-md-4 text-center">
+    <div class="card h-100 p-3 shadow-sm border-success">
+      <h6 class="text-uppercase text-success fw-bold anchored">Most Similar</h6>
+      <p id="similar-title" class="fw-semibold mb-2">evermore (2020)</p>
+      <img id="similar-img" src="data/evermore.jpg" class="img-fluid rounded" alt="Most Similar Album">
+    </div>
+  </div>
+  <div class="col-md-4 text-center">
+    <div class="card h-100 p-3 shadow-sm border-danger">
+      <h6 class="text-uppercase text-danger fw-bold anchored">Most Different</h6>
+      <p id="different-title" class="fw-semibold mb-2">Lover (2019)</p>
+      <img id="different-img" src="data/lover.jpg" class="img-fluid rounded" alt="Most Different Album">
+    </div>
+  </div>
 </div>
 
 <script>
+const albumData = {
+  taylor_swift: { title: "Taylor Swift (2006)", file: "data/taylor_swift.jpg", closest: "evermore", furthest: "lover" },
+  fearless: { title: "Fearless (2008)", file: "data/fearless.jpg", closest: "1989", furthest: "red" },
+  speak_now: { title: "Speak Now (2010)", file: "data/speak_now.jpg", closest: "folklore", furthest: "red" },
+  red: { title: "Red (2012)", file: "data/red.jpg", closest: "evermore", furthest: "lover" },
+  1989: { title: "1989 (2014)", file: "data/1989.jpg", closest: "fearless", furthest: "red" },
+  reputation: { title: "reputation (2017)", file: "data/reputation.jpg", closest: "folklore", furthest: "red" },
+  lover: { title: "Lover (2019)", file: "data/lover.jpg", closest: "the_tortured_poets_department", furthest: "red" },
+  folklore: { title: "folklore (2020)", file: "data/folklore.jpg", closest: "reputation", furthest: "red" },
+  evermore: { title: "evermore (2020)", file: "data/evermore.jpg", closest: "taylor_swift", furthest: "lover" },
+  midnights: { title: "Midnights (2022)", file: "data/midnights.jpg", closest: "reputation", furthest: "red" },
+  the_tortured_poets_department: { title: "The Tortured Poets Department (2024)", file: "data/the_tortured_poets_department.jpg", closest: "lover", furthest: "red" }
+};
+
 document.getElementById('album-select').addEventListener('change', function() {
-  document.getElementById('album-cover').src = this.value;
+  const chosen = albumData[this.value];
+  const sim = albumData[chosen.closest];
+  const diff = albumData[chosen.furthest];
+
+  document.getElementById('selected-title').textContent = chosen.title;
+  document.getElementById('selected-img').src = chosen.file;
+
+  document.getElementById('similar-title').textContent = sim.title;
+  document.getElementById('similar-img').src = sim.file;
+
+  document.getElementById('different-title').textContent = diff.title;
+  document.getElementById('different-img').src = diff.file;
 });
 </script>
 
