@@ -157,43 +157,44 @@ ul.task-list li input[type="checkbox"] {
   </select>
 </div>
 
-<div class="row g-3">
-  <div class="col-md-4 text-center">
-    <div class="card h-100 p-3 shadow-sm">
-      <h6 class="text-uppercase text-muted fw-bold anchored">Selected</h6>
-      <p id="selected-title" class="fw-semibold mb-2">Taylor Swift (2006)</p>
-      <img id="selected-img" src="data/taylor_swift.jpg" class="img-fluid rounded" alt="Selected Album">
-    </div>
+<div style="max-width: 520px;">
+  <div class="card p-3 shadow-sm mb-3 text-center">
+    <h6 class="text-uppercase text-muted fw-bold anchored">Selected Album</h6>
+    <p id="selected-title" class="fw-semibold mb-2">Taylor Swift (2006)</p>
+    <img id="selected-img" src="data/swift/taylor_swift.jpg" class="img-fluid rounded mx-auto" style="max-width: 220px;" alt="Selected Album">
   </div>
-  <div class="col-md-4 text-center">
-    <div class="card h-100 p-3 shadow-sm border-success">
-      <h6 class="text-uppercase text-success fw-bold anchored">Most Similar</h6>
-      <p id="similar-title" class="fw-semibold mb-2">evermore (2020)</p>
-      <img id="similar-img" src="data/evermore.jpg" class="img-fluid rounded" alt="Most Similar Album">
+
+  <div class="row g-3">
+    <div class="col-6 text-center">
+      <div class="card h-100 p-3 shadow-sm border-success">
+        <h6 class="text-uppercase text-success fw-bold anchored">Most Similar</h6>
+        <p id="similar-title" class="fw-semibold mb-2">evermore (2020)</p>
+        <img id="similar-img" src="data/swift/evermore.jpg" class="img-fluid rounded mx-auto" style="max-width: 160px;" alt="Most Similar Album">
+      </div>
     </div>
-  </div>
-  <div class="col-md-4 text-center">
-    <div class="card h-100 p-3 shadow-sm border-danger">
-      <h6 class="text-uppercase text-danger fw-bold anchored">Most Different</h6>
-      <p id="different-title" class="fw-semibold mb-2">Lover (2019)</p>
-      <img id="different-img" src="data/lover.jpg" class="img-fluid rounded" alt="Most Different Album">
+    <div class="col-6 text-center">
+      <div class="card h-100 p-3 shadow-sm border-danger">
+        <h6 class="text-uppercase text-danger fw-bold anchored">Most Different</h6>
+        <p id="different-title" class="fw-semibold mb-2">Lover (2019)</p>
+        <img id="different-img" src="data/swift/lover.jpg" class="img-fluid rounded mx-auto" style="max-width: 160px;" alt="Most Different Album">
+      </div>
     </div>
   </div>
 </div>
 
 <script>
 const albumData = {
-  taylor_swift: { title: "Taylor Swift (2006)", file: "data/taylor_swift.jpg", closest: "evermore", furthest: "lover" },
-  fearless: { title: "Fearless (2008)", file: "data/fearless.jpg", closest: "1989", furthest: "red" },
-  speak_now: { title: "Speak Now (2010)", file: "data/speak_now.jpg", closest: "folklore", furthest: "red" },
-  red: { title: "Red (2012)", file: "data/red.jpg", closest: "evermore", furthest: "lover" },
-  1989: { title: "1989 (2014)", file: "data/1989.jpg", closest: "fearless", furthest: "red" },
-  reputation: { title: "reputation (2017)", file: "data/reputation.jpg", closest: "folklore", furthest: "red" },
-  lover: { title: "Lover (2019)", file: "data/lover.jpg", closest: "the_tortured_poets_department", furthest: "red" },
-  folklore: { title: "folklore (2020)", file: "data/folklore.jpg", closest: "reputation", furthest: "red" },
-  evermore: { title: "evermore (2020)", file: "data/evermore.jpg", closest: "taylor_swift", furthest: "lover" },
-  midnights: { title: "Midnights (2022)", file: "data/midnights.jpg", closest: "reputation", furthest: "red" },
-  the_tortured_poets_department: { title: "The Tortured Poets Department (2024)", file: "data/the_tortured_poets_department.jpg", closest: "lover", furthest: "red" }
+  taylor_swift: { title: "Taylor Swift (2006)", file: "data/swift/taylor_swift.jpg", closest: "evermore", furthest: "lover" },
+  fearless: { title: "Fearless (2008)", file: "data/swift/fearless.jpg", closest: "1989", furthest: "red" },
+  speak_now: { title: "Speak Now (2010)", file: "data/swift/speak_now.jpg", closest: "folklore", furthest: "red" },
+  red: { title: "Red (2012)", file: "data/swift/red.jpg", closest: "evermore", furthest: "lover" },
+  1989: { title: "1989 (2014)", file: "data/swift/1989.jpg", closest: "fearless", furthest: "red" },
+  reputation: { title: "reputation (2017)", file: "data/swift/reputation.jpg", closest: "folklore", furthest: "red" },
+  lover: { title: "Lover (2019)", file: "data/swift/lover.jpg", closest: "the_tortured_poets_department", furthest: "red" },
+  folklore: { title: "folklore (2020)", file: "data/swift/folklore.jpg", closest: "reputation", furthest: "red" },
+  evermore: { title: "evermore (2020)", file: "data/swift/evermore.jpg", closest: "taylor_swift", furthest: "lover" },
+  midnights: { title: "Midnights (2022)", file: "data/swift/midnights.jpg", closest: "reputation", furthest: "red" },
+  the_tortured_poets_department: { title: "The Tortured Poets Department (2024)", file: "data/swift/the_tortured_poets_department.jpg", closest: "lover", furthest: "red" }
 };
 
 document.getElementById('album-select').addEventListener('change', function() {
