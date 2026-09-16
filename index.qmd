@@ -22,26 +22,27 @@ Select an album to compare it with the most similar and most different covers ba
   </select>
 </div>
 
-<div class="row g-3">
-  <div class="col-md-4 text-center">
-    <div class="card h-100 p-3 shadow-sm">
-      <h6 class="text-uppercase text-muted fw-bold">Selected</h6>
-      <p id="selected-title" class="fw-semibold mb-2">Taylor Swift (2006)</p>
-      <img id="selected-img" src="data/swift/taylor_swift.jpg" class="img-fluid rounded" alt="Selected Album">
-    </div>
+<div style="max-width: 520px;">
+  <div class="card p-3 shadow-sm mb-3 text-center">
+    <h6 class="text-uppercase text-muted fw-bold">Selected Album</h6>
+    <p id="selected-title" class="fw-semibold mb-2">Taylor Swift (2006)</p>
+    <img id="selected-img" src="data/swift/taylor_swift.jpg" class="img-fluid rounded mx-auto" style="max-width: 220px;" alt="Selected Album">
   </div>
-  <div class="col-md-4 text-center">
-    <div class="card h-100 p-3 shadow-sm border-success">
-      <h6 class="text-uppercase text-success fw-bold">Most Similar</h6>
-      <p id="similar-title" class="fw-semibold mb-2">evermore (2020)</p>
-      <img id="similar-img" src="data/swift/evermore.jpg" class="img-fluid rounded" alt="Most Similar Album">
+
+  <div class="row g-3">
+    <div class="col-6 text-center">
+      <div class="card h-100 p-3 shadow-sm border-success">
+        <h6 class="text-uppercase text-success fw-bold">Most Similar</h6>
+        <p id="similar-title" class="fw-semibold mb-2">evermore (2020)</p>
+        <img id="similar-img" src="data/swift/evermore.jpg" class="img-fluid rounded mx-auto" style="max-width: 160px;" alt="Most Similar Album">
+      </div>
     </div>
-  </div>
-  <div class="col-md-4 text-center">
-    <div class="card h-100 p-3 shadow-sm border-danger">
-      <h6 class="text-uppercase text-danger fw-bold">Most Different</h6>
-      <p id="different-title" class="fw-semibold mb-2">Lover (2019)</p>
-      <img id="different-img" src="data/swift/lover.jpg" class="img-fluid rounded" alt="Most Different Album">
+    <div class="col-6 text-center">
+      <div class="card h-100 p-3 shadow-sm border-danger">
+        <h6 class="text-uppercase text-danger fw-bold">Most Different</h6>
+        <p id="different-title" class="fw-semibold mb-2">Lover (2019)</p>
+        <img id="different-img" src="data/swift/lover.jpg" class="img-fluid rounded mx-auto" style="max-width: 160px;" alt="Most Different Album">
+      </div>
     </div>
   </div>
 </div>
