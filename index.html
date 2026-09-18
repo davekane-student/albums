@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Taylor Swift Album Covers – Albums</title>
+<title>Album Covers – Albums</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Taylor Swift Album Covers</h1>
+<h1 class="title">Album Covers</h1>
 </div>
 
 
@@ -139,22 +139,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Select an album to compare it with the most similar and most different covers based on color distance:</p>
-<div class="mb-4">
-  <label for="album-select" class="form-label fw-bold">Select Album:</label>
-  <select id="album-select" class="form-select" style="max-width: 360px;">
-    <option value="taylor_swift">Taylor Swift (2006)</option>
-    <option value="fearless">Fearless (2008)</option>
-    <option value="speak_now">Speak Now (2010)</option>
-    <option value="red">Red (2012)</option>
-    <option value="1989">1989 (2014)</option>
-    <option value="reputation">reputation (2017)</option>
-    <option value="lover">Lover (2019)</option>
-    <option value="folklore">folklore (2020)</option>
-    <option value="evermore">evermore (2020)</option>
-    <option value="midnights">Midnights (2022)</option>
-    <option value="the_tortured_poets_department">The Tortured Poets Department (2024)</option>
-  </select>
+<p>Select an artist and album to compare it with the most similar and most different covers based on color distance:</p>
+<div class="d-flex flex-wrap gap-3 mb-4" style="max-width: 520px;">
+  <div class="flex-fill" style="min-width: 220px;">
+    <label for="artist-select" class="form-label fw-bold">Select Artist:</label>
+    <select id="artist-select" class="form-select"></select>
+  </div>
+  <div class="flex-fill" style="min-width: 220px;">
+    <label for="album-select" class="form-label fw-bold">Select Album:</label>
+    <select id="album-select" class="form-select"></select>
+  </div>
 </div>
 
 <div style="max-width: 520px;">
@@ -182,25 +176,48 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 
+<script src="albums_data.js"></script>
 <script>
-const albumData = {
-  taylor_swift: { title: "Taylor Swift (2006)", file: "data/swift/taylor_swift.jpg", closest: "evermore", furthest: "lover" },
-  fearless: { title: "Fearless (2008)", file: "data/swift/fearless.jpg", closest: "1989", furthest: "red" },
-  speak_now: { title: "Speak Now (2010)", file: "data/swift/speak_now.jpg", closest: "folklore", furthest: "red" },
-  red: { title: "Red (2012)", file: "data/swift/red.jpg", closest: "evermore", furthest: "lover" },
-  1989: { title: "1989 (2014)", file: "data/swift/1989.jpg", closest: "fearless", furthest: "red" },
-  reputation: { title: "reputation (2017)", file: "data/swift/reputation.jpg", closest: "folklore", furthest: "red" },
-  lover: { title: "Lover (2019)", file: "data/swift/lover.jpg", closest: "the_tortured_poets_department", furthest: "red" },
-  folklore: { title: "folklore (2020)", file: "data/swift/folklore.jpg", closest: "reputation", furthest: "red" },
-  evermore: { title: "evermore (2020)", file: "data/swift/evermore.jpg", closest: "taylor_swift", furthest: "lover" },
-  midnights: { title: "Midnights (2022)", file: "data/swift/midnights.jpg", closest: "reputation", furthest: "red" },
-  the_tortured_poets_department: { title: "The Tortured Poets Department (2024)", file: "data/swift/the_tortured_poets_department.jpg", closest: "lover", furthest: "red" }
-};
+const artistSelect = document.getElementById('artist-select');
+const albumSelect = document.getElementById('album-select');
 
-document.getElementById('album-select').addEventListener('change', function() {
-  const chosen = albumData[this.value];
-  const sim = albumData[chosen.closest];
-  const diff = albumData[chosen.furthest];
+// Sort artists alphabetically by display name
+const sortedArtists = Object.entries(allArtistsData).sort((a, b) =>
+  a[1].name.localeCompare(b[1].name)
+);
+
+// Populate artist dropdown
+sortedArtists.forEach(([key, artist]) => {
+  const opt = document.createElement('option');
+  opt.value = key;
+  opt.textContent = artist.name;
+  artistSelect.appendChild(opt);
+});
+
+// Default to Taylor Swift if available
+if (allArtistsData['swift']) {
+  artistSelect.value = 'swift';
+}
+
+function updateAlbums() {
+  const artist = allArtistsData[artistSelect.value];
+  albumSelect.innerHTML = '';
+  Object.entries(artist.albums).forEach(([key, album]) => {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = album.title;
+    albumSelect.appendChild(opt);
+  });
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const artist = allArtistsData[artistSelect.value];
+  const chosen = artist.albums[albumSelect.value];
+  if (!chosen) return;
+
+  const sim = artist.albums[chosen.closest];
+  const diff = artist.albums[chosen.furthest];
 
   document.getElementById('selected-title').textContent = chosen.title;
   document.getElementById('selected-img').src = chosen.file;
@@ -210,7 +227,13 @@ document.getElementById('album-select').addEventListener('change', function() {
 
   document.getElementById('different-title').textContent = diff.title;
   document.getElementById('different-img').src = diff.file;
-});
+}
+
+artistSelect.addEventListener('change', updateAlbums);
+albumSelect.addEventListener('change', updateDisplay);
+
+// Initial populate
+updateAlbums();
 </script>
 
 
